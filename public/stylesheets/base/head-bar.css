@@ -1,0 +1,16 @@
+.head-bar-wrapper{
+	width:100%;
+	height:30px;
+	padding:10px 50px 10px 50px;
+	margin-bottom:50px;
+	background:#005f3c;
+}
+.head-bar-wrapper>p{
+	float:left;
+	width:auto;
+	margin-right:20px;
+	color:white;
+	font-size:20px;
+	font-weight:700;
+	cursor:pointer;
+}

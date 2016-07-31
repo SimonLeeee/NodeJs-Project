@@ -1,0 +1,40 @@
+a:link{
+	text-decoration:none;
+	color:rgb(0,0,204);
+}
+a:visited{
+	text-decoration:none;
+	color:rgb(0,0,204);
+}
+a:hover{
+	text-decoration:none;
+}
+a:active{
+	text-decoration:none;
+}
+
+.clear-float{
+	clear:both;
+}
+
+.form-input{
+	padding:10px;
+	border:solid 1px #DEDEDE;
+	border-radius:5px;
+	outline:none;
+}
+
+.btn-green{
+	width:75px;
+	height: 35px;
+	padding:3px 8px 3px 8px;
+	background:#005f3c;
+	color:#FFF;
+	border:solid 1px #FFFFFF;
+	border-radius:5px;
+	outline:none;
+}
+.btn-green:active{
+	background:#DEDEDE;
+	border-color:#DEDEDE;
+}

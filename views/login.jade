@@ -1,0 +1,16 @@
+include ./publice-model/init
+include ./publice-model/head-bar
+div
+div.pure-g
+	div.pure-u-md-4-24
+	div.pure-u-md-16-24
+		div.login-box
+			h2.text-center 登陆
+			form.login-form
+				input(type="text" name="account" placeholder="Enter your account").form-input
+				input(type="password" name="password" placeholder="Enter your password").form-input
+				button.btn-green submit
+				p 传送门 : 
+					a(href="register")  注册
+
+	div.pure-u-md-8-24
