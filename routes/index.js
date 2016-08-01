@@ -11,14 +11,14 @@ router.get("/register", function(req, res, next){
 	res.render("register");
 });
 
-// router.get("/routest", function(req, res ,next){
-// 	res.render("index", { title: "This is a Router" });
-// });
-
 router.post("/api/user/register", function(req, res, next){
-	user.add(req.body.account, req.body.password,function(msg){
+	user.add(req.body.account, req.body.password, req.body.repeat, function(msg){
 		res.send(msg);
 	});
 });
+
+// router.get("/routest", function(req, res ,next){
+// 	res.render("index", { title: "This is a Router" });
+// });
 
 module.exports = router;
