@@ -1,17 +1,14 @@
-extends layout
+include ./public-model/init
+include ./public-model/head-bar
 
-block content
-	h1= title
-	p Welcome to Express
-	div.content
-		div.artcleList
-			div.artcleBox
-				div.textBox
-					p name
-						span -- time
-					p title
-					p infomation
-				img(href="#")
-	div.showMsg
-	div
-
+div.index-wrapper
+	div.pure-g
+		div.pure-u-lg-15-24
+			div.article-wrapper
+				ul
+					li
+						p.title 321
+					li
+						p.title 321111
+		div.pure-u-lg-2-24
+		div.pure-u-lg-7-24
