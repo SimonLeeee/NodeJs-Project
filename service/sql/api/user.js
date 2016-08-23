@@ -61,7 +61,7 @@ var user = {
 			con.query("SELECT * FROM user where md5_key='"+key+"'", function(err, msg){
 				if(!err){
 					if(msg.length){
-						callbak("success", con);
+						callbak("success", con, key);
 					}else{
 						callbak("账号或密码错误", con)
 					}
