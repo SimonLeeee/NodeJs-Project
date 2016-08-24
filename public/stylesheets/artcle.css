@@ -1,0 +1,8 @@
+.artcle-warpper h1{
+	text-align:center;
+}
+
+.artcle-warpper .content{
+	width:700px;
+	margin:50px auto;
+}

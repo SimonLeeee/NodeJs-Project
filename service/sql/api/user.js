@@ -70,6 +70,25 @@ var user = {
 				}
 			});
 		})
+	},
+
+	isLogin : function(cookies, callback){
+		pool.getConnection(function(err, con){
+			if(!err){
+				con.query("SELECT * FROM user where md5_key='"+cookies+"';", function(msg, sqlData){
+					if(msg===null && sqlData.length){
+						callback("success", con);
+					}else{
+						callback("请先登录", con);
+					}
+				});
+				
+			}else{
+				console.log(err);
+				console.log("root connect done.");
+				con.release();
+			}
+		})
 	}
 }
 

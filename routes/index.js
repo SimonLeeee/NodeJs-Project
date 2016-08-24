@@ -3,6 +3,36 @@ var router = express.Router();
 var user = require("../service/sql/api/user.js");
 var artcle = require("../service/sql/api/artcle.js");
 
+//主页
+router.get('/artcle', function(req, res, next){
+	artcle.get(function(msg, sqlData, mysqlCon){
+		if(msg === "success"){
+			console.log(sqlData.length);
+			res.render("index", { listData : sqlData });
+		}else{
+			res.render("./public-model/error", { message : msg, error:{status:"error"} });
+		}
+		//释放mysql连接
+		mysqlCon.release();
+	});
+});
+
+//文章内容
+router.get("/artcle/:num", function(req, res, next){
+	res.render('artcle');
+});
+
+//文章发布
+router.get("/upload", function(req, res, next){
+	user.isLogin(req.cookies.q, function(msg, mysqlCon){
+		if(msg === "success"){
+			res.render('upload');
+		}else{
+			res.render("./public-model/error", { message : msg, error:{status:"error"} });
+		}
+	});
+});
+
 //登陆页面
 router.get('/', function(req, res, next) {
 	console.log(req.cookies.q);
@@ -20,7 +50,7 @@ router.post("/api/user/login", function(req, res, next){
 		//返回客户端msg
 		if(msg === "success"){
 			res.cookie('q',key);
-			res.render("index");
+			res.redirect("/artcle");
 		}else{
 			res.render("./public-model/error", { message : msg, error:{status:"error"} });
 		}

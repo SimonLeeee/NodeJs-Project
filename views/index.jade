@@ -4,57 +4,30 @@ include ./public-model/head-bar
 div.index-wrapper
 	div.pure-g
 		div.pure-u-lg-15-24
+			div.selectTab
+				p 最新
+				p 最热门
+				p 火爆ing
+				p 月榜
+				p.upload(onclick="uploadArtcle()") 发布
 			div.article-wrapper
 				ul
-					li
-						img.title-img
-						div.text-box
-							p.title Testing EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-							p.status 五五
-								span  发布于 
-									span 2014-5-5
-							p.watch
-								span 观看:500
-								span 评论:250
-					li
-						img.title-img
-						div.text-box
-							p.title Testing EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-							p.status 五五
-								span  发布于 
-									span 2014-5-5
-							p.watch
-								span 观看:500
-								span 评论:250
-					li
-						img.title-img
-						div.text-box
-							p.title Testing EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-							p.status 五五
-								span  发布于 
-									span 2014-5-5
-							p.watch
-								span 观看:500
-								span 评论:250
-					li
-						img.title-img
-						div.text-box
-							p.title Testing EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-							p.status 五五
-								span  发布于 
-									span 2014-5-5
-							p.watch
-								span 观看:500
-								span 评论:250
-					li
-						img.title-img
-						div.text-box
-							p.title Testing EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-							p.status 五五
-								span  发布于 
-									span 2014-5-5
-							p.watch
-								span 观看:500
-								span 评论:250
+					for data in listData
+						li
+							img.title-img
+							div.text-box
+								p.title #{data.title}
+								p.status #{data.author}
+									span  发布于 
+										span #{data.created_time}
+								p.watch
+									span 观看:500
+									span 评论:250
+
 		div.pure-u-lg-2-24
 		div.pure-u-lg-7-24
+
+script(type="text/javascript").
+	function uploadArtcle(){
+		location.href = "/upload";
+	} 

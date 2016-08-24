@@ -13,6 +13,14 @@ a:active{
 	text-decoration:none;
 }
 
+div:after {
+    content: "."; 
+    display: block;
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
 .clear-float{
 	clear:both;
 }
