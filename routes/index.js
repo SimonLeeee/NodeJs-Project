@@ -45,12 +45,18 @@ router.post("/api/user/register", function(req, res, next){
 	});
 });
 
-//
+//上传文章
 router.post("/api/artcle/upload", function(req, res, next){
+	if(!req.cookies.q){
+		res.render("./public-model/error", { message : "请先登录", error:{status:"no login"} });
+	}
+	if(!req.body.title || !req.body.content){
+		res.render("./public-model/error", { message : "文章信息不完整", error:{status:"info error"} });
+	}
 	if(req.cookies.q){
 		artcle.add(req.body.title, req.body.content, req.cookies.q,function(msg, mysqlCon){
 			if(msg === "success"){
-				res.render("./public-model/error", { message : msg, error:{status:"error"} });
+				res.render("./public-model/error", { message : msg, error:{status:"upload success"} });
 			}else{
 				res.render("./public-model/error", { message : msg, error:{status:"error"} });
 			}
@@ -58,9 +64,8 @@ router.post("/api/artcle/upload", function(req, res, next){
 			//释放mysql连接
 			mysqlCon.release();
 		});
-	}else{
-		res.render("./public-model/error", { message : "请先登录", error:{status:"no login"} });
 	}
+	
 	
 })
 

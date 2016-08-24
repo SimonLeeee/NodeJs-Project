@@ -1,2 +1,2 @@
-supervisor www
+supervisor www.js
 PAUSE
