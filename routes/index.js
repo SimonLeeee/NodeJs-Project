@@ -97,10 +97,6 @@ router.post("/api/artcle/upload", function(req, res, next){
 	}
 	
 	
-})
-
-// router.get("/routest", function(req, res ,next){
-// 	res.render("index", { title: "This is a Router" });
-// });
+});
 
 module.exports = router;
