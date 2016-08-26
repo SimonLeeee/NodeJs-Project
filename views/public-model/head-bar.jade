@@ -11,6 +11,8 @@ script(type="text/javascript").
 	}
 
 	function toArtcle(){
-		location.href = "/artcle";
+		if(window.location.pathname !== "/artcle"){
+			location.href = "/artcle";
+		}
 	}
 	

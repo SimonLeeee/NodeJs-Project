@@ -2,21 +2,29 @@ include ./public-model/init
 include ./public-model/head-bar
 
 div(style="width:1024px;margin:20px auto").upload-box
-	p(style="width:300px;;margin:auto;font-size:18px;") 文章标题 : 
-		input(placeholder="标题").form-input
-	br
-	br
+	form(id="artcle-form" action="api/artcle/upload" method="POST")
+		p(style="width:300px;;margin:auto;font-size:18px;") 文章标题 : 
+			input(name="title" placeholder="标题").form-input
+		br
+		br
 
-	textarea(id="markdown-text" style="width:45%;height:auto;min-height:700px;border:solid 1px #DEDEDE;outline:none;padding:20px;float:left;")
-	div(id="showtext-box" style="width:45%;float:right;border:solid 1px #DEDEDE;height:auto;min-height:700px;padding:20px;")
-
+		textarea(id="markdown-text" style="width:45%;height:auto;min-height:700px;border:solid 1px #DEDEDE;outline:none;padding:20px;float:left;")
+		div(id="showtext-box" style="width:45%;float:right;border:solid 1px #DEDEDE;height:auto;min-height:700px;padding:20px;")
+		input(id="content" name="content" maxlength="9999999" style="display:none;")
+		<br style="clear:both;"/>
+		div(onclick="submit()" style="width:200px;display:block;margin:50px auto;text-align: center;line-height: 2;").btn-green 提交
+		
 script(src="./js/markdown.js")
 script.
 	var markdownHandle = document.getElementById("markdown-text");
 	var textBox = document.getElementById("showtext-box");
-	//- console.log(markdown)
 	markdownHandle.addEventListener("keyup", function(){
-		console.log(markdown.toHTML( markdownHandle.value, "Maruku"));
-		textBox.innerHTML = markdown.toHTML( markdownHandle.value, "Maruku");
-		
+		console.log(marked( markdownHandle.value, {breaks: true}));
+		textBox.innerHTML = marked( markdownHandle.value, {breaks: true});
 	});
+
+	function submit(){
+		var content = document.getElementById("showtext-box").innerHTML;
+		document.getElementById("content").value = content;
+		document.getElementById("artcle-form").submit();
+	}

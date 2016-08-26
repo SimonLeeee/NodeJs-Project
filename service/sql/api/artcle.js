@@ -32,10 +32,32 @@ var artcle = {
 		})
 	},
 
-	get : function(callback){
+	getList : function(callback){
 		pool.getConnection(function(err, con){
 			if(!err){
 				con.query("SELECT * FROM ARTCLE", function(err, sqlData){
+					if(!err){
+						var listData = JSON.parse(JSON.stringify(sqlData));
+						for(var i in listData){
+							listData[i].created_time = listData[i].created_time.replace(/T.*/g,"");
+						}
+						callback("success", listData, con);
+					}else{
+						callback(err, con);
+					}
+				});
+			}else{
+				console.log(err);
+				console.log("root connect done.");
+				con.release();
+			}
+		});
+	},
+
+	get : function(id, callback){
+		pool.getConnection(function(err, con){
+			if(!err){
+				con.query("SELECT * FROM ARTCLE where id='"+id+"'", function(err, sqlData){
 					if(!err){
 						var listData = JSON.parse(JSON.stringify(sqlData));
 						for(var i in listData){

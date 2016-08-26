@@ -16,7 +16,7 @@ div.index-wrapper
 						li
 							img.title-img
 							div.text-box
-								p.title #{data.title}
+								p(onclick="toArtcle(#{data.id})").title #{data.title}
 								p.status #{data.author}
 									span  发布于 
 										span #{data.created_time}
@@ -30,4 +30,8 @@ div.index-wrapper
 script(type="text/javascript").
 	function uploadArtcle(){
 		location.href = "/upload";
-	} 
+	}
+
+	function toArtcle(index){
+		location.href = "/artcle/" + index;
+	}

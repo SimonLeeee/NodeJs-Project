@@ -18,7 +18,7 @@ CREATE TABLE artcle(
 	user_id INT NOT NULL,
 	author CHAR(40) NOT NULL,
 	title CHAR(40) NOT NULL,
-	content CHAR(40) NOT NULL,
+	content TEXT NOT NULL,
 	created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id)
 );

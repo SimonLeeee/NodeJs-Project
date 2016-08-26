@@ -1,8 +1,7 @@
-.artcle-warpper h1{
-	text-align:center;
+*{
+    word-break: break-word;
 }
-
 .artcle-warpper .content{
-	width:700px;
+	width:620px;
 	margin:50px auto;
 }

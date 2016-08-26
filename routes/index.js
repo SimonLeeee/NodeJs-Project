@@ -5,7 +5,7 @@ var artcle = require("../service/sql/api/artcle.js");
 
 //主页
 router.get('/artcle', function(req, res, next){
-	artcle.get(function(msg, sqlData, mysqlCon){
+	artcle.getList(function(msg, sqlData, mysqlCon){
 		if(msg === "success"){
 			console.log(sqlData.length);
 			res.render("index", { listData : sqlData });
@@ -18,11 +18,26 @@ router.get('/artcle', function(req, res, next){
 });
 
 //文章内容
-router.get("/artcle/:num", function(req, res, next){
-	res.render('artcle');
+router.get("/artcle/:number", function(req, res, next){
+	var artcleId = parseInt(req.params.number);
+	if(artcleId){
+		artcle.get(parseInt(req.params.number), function(msg, sqlData, mysqlCon){
+			if(msg === "success" && sqlData[0]!==undefined){
+				console.log(sqlData[0]);
+				res.render("artcle", { listData : sqlData[0] });
+			}else{
+				res.render("./public-model/error", { message : "Not Found", error:{status:"error"} });
+			}
+			//释放mysql连接
+			mysqlCon.release();
+		});
+	}else{
+		res.redirect("/artcle");
+	}
+	
 });
 
-//文章发布
+//文章发布页面
 router.get("/upload", function(req, res, next){
 	user.isLogin(req.cookies.q, function(msg, mysqlCon){
 		if(msg === "success"){
@@ -77,11 +92,14 @@ router.post("/api/user/register", function(req, res, next){
 
 //上传文章
 router.post("/api/artcle/upload", function(req, res, next){
+	console.log(req.body)
 	if(!req.cookies.q){
 		res.render("./public-model/error", { message : "请先登录", error:{status:"no login"} });
+		return;
 	}
 	if(!req.body.title || !req.body.content){
 		res.render("./public-model/error", { message : "文章信息不完整", error:{status:"info error"} });
+		return;
 	}
 	if(req.cookies.q){
 		artcle.add(req.body.title, req.body.content, req.cookies.q,function(msg, mysqlCon){
