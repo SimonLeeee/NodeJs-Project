@@ -2,9 +2,10 @@ include ./public-model/init
 include ./public-model/head-bar
 
 div(style="width:1024px;margin:20px auto").upload-box
-	form(id="artcle-form" action="api/artcle/upload" method="POST")
+	form(id="artcle-form" action="api/artcle/upload" method="POST" enctype="multipart/form-data")
 		p(style="width:300px;;margin:auto;font-size:18px;") 文章标题 : 
 			input(name="title" placeholder="标题").form-input
+			input(name="artcle-image" type="file").form-input
 		br
 		br
 

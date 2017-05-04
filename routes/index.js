@@ -3,6 +3,10 @@ var router = express.Router();
 var user = require("../service/sql/api/user.js");
 var artcle = require("../service/sql/api/artcle.js");
 
+var multer  = require('multer');
+var upload = multer({ dest: "../public/uploads/" });
+
+
 //主页
 router.get('/artcle', function(req, res, next){
 	artcle.getList(function(msg, sqlData, mysqlCon){
@@ -91,8 +95,7 @@ router.post("/api/user/register", function(req, res, next){
 });
 
 //上传文章
-router.post("/api/artcle/upload", function(req, res, next){
-	console.log(req.body)
+router.post("/api/artcle/upload",upload.single("artcle-image") ,function(req, res, next){
 	if(!req.cookies.q){
 		res.render("./public-model/error", { message : "请先登录", error:{status:"no login"} });
 		return;
