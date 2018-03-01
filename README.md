@@ -1,3 +1,3 @@
-# This is a forum that use Node and Express to made.
+# This is a forum that base on NodeJs and Express.
 
-### Many function will add it , but now it isn't perfect.
+### I will complete many functions, but now it isn't perfect.
